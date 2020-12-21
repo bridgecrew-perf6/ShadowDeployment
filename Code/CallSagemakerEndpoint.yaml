@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  CallSagemakerEndpoint:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 123
+      Role: >-
+        arn:aws:iam::340280328827:role/service-role/CallSagemakerEndpoint-role-bw5w3zfy
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /predictbreastcancer
+            Method: POST
+      Environment:
+        Variables:
+          BUCKET: nkkoshiy-demobucket
+          ENDPOINT_NAME: DEMO-linear-endpoint-202011012055
+          ENDPOINT_NAME1: DEMO-linear-endpoint-202010261820
